@@ -1,0 +1,4 @@
+This is a bread and pastry maker.
+It displays all the basic recipes of the bread and pastries listed.
+The bread superclass contains a constructor with general ingredients.
+The 5 subclasses are all things I personally baked and use something only unique to them.
