@@ -6,146 +6,139 @@
  * Description: The program will be tasked on making baking different types of bread and pastries.
  */
 class Bread {
-    protected String flour;
-    protected String water;
-    protected String salt;
-    protected String sugar;
-    protected String bakingPowder;
-    protected String yeast;
-    protected String breadName;
-    protected String state;
-    protected String recipe;
+    private String flour;
+    private String water;
+    private String salt;
+    private String sugar;
+    private String bakingPowder;
+    private String yeast;
+    private String breadName;
+    private String state;
+    private String recipe;
 
     public Bread() {
-        this.flour = "Generic flour";
+        this.breadName = "Regular Bread";
+        this.flour = "Flour";
         this.water = "Water";
         this.salt = "Salt";
         this.sugar = "Sugar";
-        this.bakingPowder = "Baking powder";
+        this.bakingPowder = "Baking Powder";
         this.yeast = "Yeast";
-        this.breadName = "Generic Bread";
-        this.state = "Not baked";
-        this.recipe = "Combine ingredients, knead dough, let it rise, bake.";
+        this.state = "Not Baked";
+        this.recipe = "Combine flour, salt, water, sugar, baking powder, yeast, knead dough, let it rise, bake.";
     }
 
-    public void bake() {
-        if (!state.equals("Baked")) {
-            state = "Baked";
-            System.out.println(breadName + " is now baked!");
-        } else {
-            System.out.println(breadName + " is already baked.");
-        }
+    public void setBreadName(String breadName) {
+        this.breadName = breadName;
+    }
+
+    public void setRecipe(String recipe) {
+        this.recipe = recipe;
     }
 
     public String getIngredients() {
         return flour + ", " + water + ", " + salt + ", " + sugar + ", " + bakingPowder + ", " + yeast;
     }
 
-    // Getters, setters, toString method
+    public void bake() {
+        if (!state.equals("Baked")) {
+            state = "Baked";
+        }
+    }
 
     @Override
     public String toString() {
-        return "Bread{" +
-                "flour='" + flour + '\'' +
-                ", water='" + water + '\'' +
-                ", salt='" + salt + '\'' +
-                ", sugar='" + sugar + '\'' +
-                ", bakingPowder='" + bakingPowder + '\'' +
-                ", yeast='" + yeast + '\'' +
-                ", breadName='" + breadName + '\'' +
-                ", state='" + state + '\'' +
-                ", recipe='" + recipe + '\'' +
-                '}';
+        return "Bread Name: " + breadName + "  State:" + state + "  Basic Ingredients: " + getIngredients()  + "  Recipe: " + recipe ;
     }
 }
 
 class SourdoughBread extends Bread {
-    private String starter;
+    private String sourdoughStarter;
 
-    public SourdoughBread(String starter) {
+    public SourdoughBread() {
         super();
-        this.starter = starter;
-        this.breadName = "Sourdough Bread";
-        this.recipe = "Combine starter, flour, water, salt, knead dough, let it rise, bake.";
+        this.sourdoughStarter = "Sourdough Starter";
+        setBreadName("Sourdough Bread");
+        setRecipe("Combine flour, water, salt, sugar, " + sourdoughStarter +", knead dough, let it rise, bake.");
     }
 
-    // Getters, setters, toString method
 }
 
 class Pastry extends Bread {
-    private String filling;
+    private String butter;
+    private String eggs;
 
-    public Pastry(String filling) {
+    public Pastry() {
         super();
-        this.filling = filling;
-        this.breadName = "Pastry";
-        this.recipe = "Make dough, roll out, add filling, shape, bake.";
+        this.butter = "Butter";
+        this.eggs = "Eggs";
+        setBreadName("Pastry");
+        setRecipe("Combine flour, " + butter +" , water, salt, sugar, " + eggs+" ,knead dough, shape, bake.");
     }
 
-    // Getters, setters, toString method
 }
 
-class WholeWheatBread extends Bread {
-    private String seeds;
+class RyeBread extends Bread {
+    private String carawaySeeds;
 
-    public WholeWheatBread(String seeds) {
+    public RyeBread() {
         super();
-        this.seeds = seeds;
-        this.breadName = "Whole Wheat Bread";
-        this.recipe = "Combine whole wheat flour, water, salt, sugar, seeds, yeast, knead dough, let it rise, bake.";
+        this.carawaySeeds = "Caraway Seeds";
+        setBreadName("Rye Bread");
+        setRecipe("Combine rye flour, water, salt, sugar, "+ carawaySeeds +", yeast, knead dough, let it rise, bake.");
     }
 
-    // Getters, setters, toString method
+
 }
 
 class Baguette extends Bread {
-    private String crust;
+    private String oliveOil = "Olive Oil";
 
-    public Baguette(String crust) {
+    public Baguette() {
         super();
-        this.crust = crust;
-        this.breadName = "Baguette";
-        this.recipe = "Combine flour, water, salt, yeast, shape, proof, bake.";
+        setBreadName("Baguette");
+        setRecipe("Combine flour, water, salt, yeast, "+ oliveOil +", knead dough, let it rise, shape into baguette, bake.");
     }
 
-    // Getters, setters, toString method
 }
-class RyeBread extends Bread {
-    private String ryeFlour;
 
-    public RyeBread(String ryeFlour) {
+class Ciabatta extends Bread {
+
+    public Ciabatta() {
         super();
-        this.ryeFlour = ryeFlour;
-        this.breadName = "Rye Bread";
-        this.recipe = "Combine rye flour, water, salt, sugar, yeast, knead dough, let it rise, bake.";
+        String herbs = "Herbs";
+        setBreadName("Ciabatta");
+        setRecipe("Combine flour, water, salt, yeast, " + herbs +" , knead dough, let it rise, shape into ciabatta, bake.");
     }
 
-    // Getters, setters, toString method
 }
 
 public class Main {
     public static void main(String[] args) {
-        Bread genericBread = new Bread();
-        SourdoughBread sourdoughBread = new SourdoughBread("Sourdough starter");
-        Pastry pastry = new Pastry("Fruit filling");
-        WholeWheatBread wholeWheatBread = new WholeWheatBread("Seeds");
-        Baguette baguette = new Baguette("Crusty");
-        RyeBread ryeBread = new RyeBread("Rye flour");
+        Bread bread = new Bread();
+        bread.bake();
 
+        SourdoughBread sourdough = new SourdoughBread();
+        sourdough.bake();
 
-        System.out.println("Generic Bread Recipe: " + genericBread.recipe);
-        System.out.println("Sourdough Bread Recipe: " + sourdoughBread.recipe);
-        System.out.println("Pastry Recipe: " + pastry.recipe);
-        System.out.println("Whole Wheat Bread Recipe: " + wholeWheatBread.recipe);
-        System.out.println("Baguette Recipe: " + baguette.recipe);
-        System.out.println("Rye Bread Recipe: " + ryeBread.recipe);
-
-        genericBread.bake();
-        sourdoughBread.bake();
+        Pastry pastry = new Pastry();
         pastry.bake();
-        wholeWheatBread.bake();
+
+        RyeBread rye = new RyeBread();
+        rye.bake();
+
+        Baguette baguette = new Baguette();
         baguette.bake();
-        ryeBread.bake();
+
+        Ciabatta ciabatta = new Ciabatta();
+        ciabatta.bake();
+
+        System.out.println(bread);
+        System.out.println(sourdough);
+        System.out.println(pastry);
+        System.out.println(rye);
+        System.out.println(baguette);
+        System.out.println(ciabatta);
     }
 }
 
